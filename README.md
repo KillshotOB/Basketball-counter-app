@@ -1,6 +1,6 @@
 # basketball_counter_app
 
-A new Flutter project.
+A simple basketball counter flutter application that counts the points of a basketball game. The application uses simple BloC pattern.
 
 ## Getting Started
 
