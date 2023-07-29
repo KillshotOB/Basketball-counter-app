@@ -3,7 +3,9 @@ import 'package:basketball_counter_app/cubit/counter_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-void main() => runApp(const PointsCounter());
+void main() {
+  runApp(const PointsCounter());
+}
 
 class PointsCounter extends StatelessWidget {
   const PointsCounter({Key? key}) : super(key: key);
