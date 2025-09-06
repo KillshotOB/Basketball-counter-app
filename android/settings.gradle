@@ -9,7 +9,7 @@
 //def flutterSdkPath = properties.getProperty("flutter.sdk")
 //assert flutterSdkPath != null, "flutter.sdk not set in local.properties"
 //apply from: "$flutterSdkPath/packages/flutter_tools/gradle/app_plugin_loader.gradle"
-include ':app'
+/*include ':app'
 
 def localPropertiesFile = new File(rootProject.projectDir, "local.properties")
 def properties = new Properties()
@@ -20,3 +20,25 @@ localPropertiesFile.withReader("UTF-8") { reader -> properties.load(reader) }
 def flutterSdkPath = properties.getProperty("flutter.sdk")
 assert flutterSdkPath != null, "flutter.sdk not set in local.properties"
 apply from: "$flutterSdkPath/packages/flutter_tools/gradle/app_plugin_loader.gradle"
+*/
+include ':app'
+
+def flutterSdkPath = null
+
+def localPropertiesFile = new File(rootProject.projectDir, "local.properties")
+if (localPropertiesFile.exists()) {
+    def properties = new Properties()
+    properties.load(new FileInputStream(localPropertiesFile))
+    flutterSdkPath = properties.getProperty("flutter.sdk")
+}
+
+// On CI (Codemagic), FLUTTER_ROOT is set automatically
+if (flutterSdkPath == null) {
+    flutterSdkPath = System.getenv("FLUTTER_ROOT")
+}
+
+if (flutterSdkPath == null) {
+    throw new GradleException("Flutter SDK not found. Define flutter.sdk in local.properties or set FLUTTER_ROOT environment variable")
+}
+
+apply from: "$flutterSdkPath/packages/flutter_tools/gradle/flutter.gradle"
