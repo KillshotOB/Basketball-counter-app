@@ -190,4 +190,4 @@ if (flutterRoot == null) {
 }
 
 // Apply the Flutter Gradle plugin (modern way)
-apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
+//apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
